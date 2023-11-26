@@ -105,6 +105,7 @@ class AwsCdk101InPythonStack(Stack):
             bucket_name="awscdk101inpythonstack-awsugs3bucketvolunteer2525b-pksrapxsw8bu"
         )
         
+        # Deploy the website to S3 bucket
         s3deploy.BucketDeployment(self, f"awsug_s3_bucket_{USER_NAME}",
             sources=[s3deploy.Source.asset("./website-dist")],
             destination_bucket=awsug_s3_bucket,        
@@ -120,4 +121,5 @@ class AwsCdk101InPythonStack(Stack):
             access_control=s3.BucketAccessControl.BUCKET_OWNER_FULL_CONTROL
         )
 
+        # Print out the S3 Bucket URL
         CfnOutput(self, "S3 Bucket URL", value=awsug_s3_bucket.bucket_website_url)
