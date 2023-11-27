@@ -94,7 +94,8 @@ class AwsCdk101InPythonStack(Stack):
         # Create a bucket
         awsug_s3_bucket = s3.Bucket(self, f"awsug-s3-bucket-{USER_NAME}",
             website_index_document="index.html",
-            block_public_access=s3.BlockPublicAccess(block_public_policy=False)
+            block_public_access=s3.BlockPublicAccess(block_public_policy=False),
+            public_read_access=True
         )
 
         CfnOutput(self, "S3 BucketName", value=awsug_s3_bucket.bucket_name)
